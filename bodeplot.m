@@ -24,4 +24,4 @@ for w=[1 3 5],
     Y(index,:) = y;
     index = index +1;
 end
-plot(t,Y(3,:), 'b',t, Xs(3,:),'r')
+plot(t,Y(1,:), 'b',t, Xs(1,:),'r')
