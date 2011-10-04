@@ -4,26 +4,24 @@ num = {[1 10.1 1]};
 den = {[1 2 10 9]};
 H = tf(num, den);
 %bode(H)
-pzmap(H);
-sgrid
-grid on
+% pzmap(H);
+% sgrid
+% grid on
 
 N = 8192;
 f = 100;
 Ts = 1/f;
 Tmax = (N-1)*Ts;
 t= 0:Ts:Tmax;
-Xs = ones(0,N)
-size(Xs)
-Y = ones(0,N);
+Xs = ones(3,N);
+Y = ones(3,N);
 size(Y)
-for w=1:3,
-    disp('Start of loop')
-    disp(w)
-    x = sin(w*t)
-    size(x)
-    Xs = [Xs ; x];
+index = 1;
+for w=[1 3 5],
+    x = sin(w*t);
+    Xs(index,:) = x;
     [y, t] = lsim(H,x,t);
-    Y = [Y;y];
+    Y(index,:) = y;
+    index = index +1;
 end
-plot(t, Y)
+plot(t,Y(3,:), 'b',t, Xs(3,:),'r')
