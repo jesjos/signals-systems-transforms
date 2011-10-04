@@ -1,0 +1,13 @@
+T = 2;
+w=2*pi/T;
+N = 8192;
+f = 100;
+Ts = 1/f;
+Tmax = ;
+t= 0:Ts:Tmax;
+y = @(t) 0;
+for k=1:50
+  b = mod(k,2)*(4/(k*pi));
+  y = @(t) y(t) + b*sin(k*w*t);
+end
+plot(t, y(t))

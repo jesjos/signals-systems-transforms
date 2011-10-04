@@ -7,3 +7,23 @@ H = tf(num, den);
 pzmap(H);
 sgrid
 grid on
+
+N = 8192;
+f = 100;
+Ts = 1/f;
+Tmax = (N-1)*Ts;
+t= 0:Ts:Tmax;
+Xs = ones(0,N)
+size(Xs)
+Y = ones(0,N);
+size(Y)
+for w=1:3,
+    disp('Start of loop')
+    disp(w)
+    x = sin(w*t)
+    size(x)
+    Xs = [Xs ; x];
+    [y, t] = lsim(H,x,t);
+    Y = [Y;y];
+end
+plot(t, Y)
