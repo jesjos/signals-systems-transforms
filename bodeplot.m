@@ -68,3 +68,34 @@ plot(wk, abs(X))
 title('wk, abs(X)')
 axis([0, 7.5, 0, 6000])
 
+% Uppgift 4v
+% sista nollstället är skalfaktorn
+% beräknas enligt: (3i - x) = 1/(skalfaktor före korrigering)
+roots = [0 -1i 1i -5i 5i -7i 7i -9i 9i 4.31165e8];
+num = poly(roots);
+proots = -4*ones(1,21);
+den = poly(proots);
+sys = tf(num,den);
+subplot(2,3,1)
+bode(sys)
+grid on
+title('Uppgift 4 - vårt eget system')
+
+% 21 poler
+subplot(2,3,3)
+lsim(sys, x, t)
+title('x notchfiltrerad')
+
+subplot(2,3,4)
+lsim(sys, y, t)
+title('y notchfiltrerad')
+
+subplot(2,3,5)
+[xprim, t] = lsim(sys, x, t);
+X = fft(xprim, N);
+plot(wk, X);
+
+subplot(2,3,6)
+[yprim, t] = lsim(sys, y, t);
+Y = fft(yprim, N);
+plot(wk, Y);
