@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.5.6)  10 OCT 2011 13:40
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.5.6)  10 OCT 2011 14:36
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -500,37 +500,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--79
 [1
 
 {/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<square.png, id=17, 1477.52pt x 909.3975pt>
-File: square.png Graphic file (type png)
- <use square.png> [2 <./square.png>] <bode.png, id=24, 594.22pt x 530.98375pt>
-File: bode.png Graphic file (type png)
- <use bode.png>
-<pzmap.png, id=25, 594.22pt x 530.98375pt>
-File: pzmap.png Graphic file (type png)
- <use pzmap.png>
-<omega 1.png, id=26, 1731.46875pt x 1003.75pt>
-File: omega 1.png Graphic file (type png)
- <use omega 1.png>
-<omega 3.png, id=27, 1731.46875pt x 1003.75pt>
-File: omega 3.png Graphic file (type png)
- <use omega 3.png>
-<omega 5.png, id=28, 1396.21625pt x 1023.825pt>
-File: omega 5.png Graphic file (type png)
- <use omega 5.png> [3] [4 <./bode.png>] <matlabsquare.png, id=36, 1477.52pt x 9
-09.3975pt>
-File: matlabsquare.png Graphic file (type png)
-
-<use matlabsquare.png> [5 <./pzmap.png>]
-<matlabsquaredft.png, id=41, 1477.52pt x 909.3975pt>
-File: matlabsquaredft.png Graphic file (type png)
- <use matlabsquaredft.png>
-Underfull \hbox (badness 10000) in paragraph at lines 275--276
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
-<dftY.png, id=42, 1477.52pt x 909.3975pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--269
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--274
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--287
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 293--294
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--298
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
+
+ []
+
+<square.png, id=27, 1477.52pt x 909.3975pt>
+File: square.png Graphic file (type png)
+ <use square.png>
+<bode.png, id=29, 594.22pt x 530.98375pt>
+File: bode.png Graphic file (type png)
+ <use bode.png>
+<pzmap.png, id=30, 594.22pt x 530.98375pt>
+File: pzmap.png Graphic file (type png)
+ <use pzmap.png>
+<omega 1.png, id=31, 1731.46875pt x 1003.75pt>
+File: omega 1.png Graphic file (type png)
+ <use omega 1.png>
+<omega 3.png, id=32, 1731.46875pt x 1003.75pt>
+File: omega 3.png Graphic file (type png)
+ <use omega 3.png>
+<omega 5.png, id=33, 1396.21625pt x 1023.825pt>
+File: omega 5.png Graphic file (type png)
+ <use omega 5.png>
+<matlabsquare.png, id=34, 1477.52pt x 909.3975pt>
+File: matlabsquare.png Graphic file (type png)
+ <use matlabsquare.png>
+<matlabsquaredft.png, id=35, 1477.52pt x 909.3975pt>
+File: matlabsquaredft.png Graphic file (type png)
+ <use matlabsquaredft.png>
+<dftY.png, id=36, 1477.52pt x 909.3975pt>
 File: dftY.png Graphic file (type png)
  <use dftY.png>
+<baranollst.png, id=37, 1477.52pt x 909.3975pt>
+File: baranollst.png Graphic file (type png)
+ <use baranollst.png>
+<filterresultat.png, id=38, 1477.52pt x 909.3975pt>
+File: filterresultat.png Graphic file (type png)
+ <use filterresultat.png>
 No file rapport.bbl.
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
@@ -540,33 +577,34 @@ Package minitoc Info: I0009
 Package minitoc(hints) Info: I0019
 (minitoc(hints))             No hints have been written 
 (minitoc(hints))             in the rapport.log file..
-[6 <./omega 1.png>] [7 <./omega 3.png> <./omega 5.png>] [8 <./matlabsquare.png>
- <./matlabsquaredft.png>] [9 <./dftY.png>] (./rapport.aux) ) 
+[5] [6 <./square.png>] [7 <./bode.png>] [8 <./pzmap.png>] [9 <./omega 1.png> <.
+/omega 3.png>] [10 <./omega 5.png>] [11 <./matlabsquare.png> <./matlabsquaredft
+.png>] [12 <./dftY.png> <./baranollst.png>] [13 <./filterresultat.png>]
+(./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 5216 strings out of 493848
- 67830 string characters out of 3149208
+ 5237 strings out of 493848
+ 68178 string characters out of 3149208
  141128 words of memory out of 3000000
- 8224 multiletter control sequences out of 15000+200000
+ 8237 multiletter control sequences out of 15000+200000
  11999 words of font info for 51 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  27i,23n,43p,272b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive
-/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/
-2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2
-009/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/20
-09/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2009
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2009/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2009/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2009/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2009/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2009/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2009/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2009/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2009/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on rapport.pdf (9 pages, 448949 bytes).
+</usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi5.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
+pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb
+></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
+usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
+/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on rapport.pdf (13 pages, 518783 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 120 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

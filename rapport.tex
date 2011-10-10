@@ -136,18 +136,15 @@ for k=1:100
 		y = @(t) y(t) + ak*cos(k*w*t) + bk*sin(k*w*t);
 end
 \end{verbatim}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{square.png}
-  \caption{Vår fyrkantsvåg}
-\end{figure}
+
+För fyrkantsvåg, se figur 1.
 % subsection generering_av_fyrkantsvåg (end)
 
 \section{Linjära system och sinusar (3.2)} % (fold)
 \subsection{Konstruering av givet system} % (fold)
 \label{sub:konstruering_av_givet_system}
 Vi konstruerar först ett LTI-system med ett frekvenssvar $G(j\omega)$ som är givet i uppgiften. \\
-Därefter plottar vi det i frekvensdomänen samt studerar dess poler och nollställen.
+Därefter plottar vi det i frekvensdomänen samt studerar dess poler och nollställen - figur 2 och 3.
 \begin{verbatim}
 % num = (s + 0.1)(s + 10) = s^2 + 10.1s + 1
 % den = (s + 1)(s^2 + s + 9) = s^2 + 2s^2 + 10s + 9
@@ -160,25 +157,17 @@ title('Bode for H');
 % sgrid
 % grid on
 \end{verbatim}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{bode.png}
-  \caption{Bode-diagram för $G(j\omega)$}
-\end{figure}
+
 I Bode-diagrammet framkommer systemets påverkan på olika frekvenserkomponenter i insignalen. I det övre diagrammet kan vi se systemets amplitudpåverkan. Till exempel förstärks komponenter med vinkelfrekvens $\omega = 3$ med ungefär $10dB$. \\
 I det undre diagrammet ser vi systemets faspåverkan. Till exempel får komponenter med vinkelfrekvensen $\omega = 3$ en förskjutning på ungefär $-100^\circ$.
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{pzmap.png}
-  \caption{pzmap}
-\end{figure}
+
 % subsection konstruering_av_givet_system (end)
 
 \subsection{Insignaler skapas och körs genom systemet} % (fold)
 \label{sub:insignal}
 
 Tre insignaler skapas. Dessa är sinusformade signaler med vinkelsfrekvenserna $\omega = [1,2,3]$. \\
-Därefter används matlab för att simulera systemets påverkan på signalerna. In- och utsignal plottas.
+Därefter används matlab för att simulera systemets påverkan på signalerna. In- och utsignal plottas, se figur 4-6.
 
 \begin{verbatim}
 N = 8192;
@@ -205,21 +194,6 @@ title('In and out signals for w=1');
 % plot(t,Y(3,:), 'b',t, Xs(3,:),'r')
 % title('In and out signals for w=5');
 \end{verbatim}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{omega 1.png}
-  \caption{$\omega = 1$}
-\end{figure}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{omega 3.png}
-  \caption{$\omega = 3$}
-\end{figure}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{omega 5.png}
-  \caption{$\omega = 5$}
-\end{figure}
 Man kan se att utsignalerna har samma periodtid som insignalerna. Man kan också se att det har skett amplitudpåverkan samt faspåverkan.
 Med hjälp av evalfr kan vi bestämma systemets teoretiska amplitud- och faspåverkan:
 \begin{verbatim}
@@ -248,14 +222,9 @@ Ur detta kan man läsa att förhållandet $y(t) = g(\omega) sin(\omega t + \phi 
 
 \section{Periodiska insignaler och DFT}
 \subsection{DFT för matlabs fyrkantsvåg} % (fold)
-Först plottades matlabs fyrkantsvåg:
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{matlabsquare.png}
-  \caption{$\omega = 5$}
-\end{figure}
+Först plottades matlabs fyrkantsvåg - se figur 7.
 Vi konstaterar att funktionen är udda eftersom $f(-x) = -f(x)$. Detta syns dåligt i diagrammet, eftersom vågen genererades med utgångspunkt $t = 0$. \\
-Därefter användes plottades frekvenssvaret för matlabs fyrkantsvåg:
+Därefter plottades frekvenssvaret för matlabs fyrkantsvåg, se figur 8.
 \begin{verbatim}
 x = square(t);
 % plot(t,x);
@@ -266,11 +235,7 @@ X = fft(x,N);
 
 plot(wk, abs(X))
 \end{verbatim}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=15.0cm]{matlabsquaredft.png}
-  \caption{DFT-transform av matlabs fyrkantsvåg}
-\end{figure}
+
 
 Sedan användes ett antal uttryck för att räkna ut de teoretiska Fourierkoefficienterna. Det empiriskt utkomna koefficienterna räknades ut med matlabrutinen evalfr. \\
 
@@ -288,7 +253,8 @@ Sedan användes ett antal uttryck för att räkna ut de teoretiska Fourierkoeffi
 \label{sub:systemet_appliceras_pa_fyrkantsvagen}
 Det tidigare angedda systemets påverkan på fyrkantsvågen beräknas med hjälp av rutinen lsim.\\
 Fourierkoefficienterna för utsignalen y beräknas med hjälp av givna ekvationer och tas även fram empiriskt med hjälp av matlabrutinen evalfr. \\
-Till sist plottas y i frekvensplanet. \\
+Till sist plottas y i frekvensplanet - se figur 9.\\
+Där framgår det att $\omega = 1$ är lite förstärkt, $\omega = 3$ är kraftigt förstärkt, och $\omega = 5$ är kraftigt sänkt. \\ \\
 \begin{tabular}{|c||ccc|}
   \hline
   \multicolumn{4}{|c|}{Fourierkoefficienter för fyrkantsvåg efter system G} \\
@@ -298,13 +264,113 @@ Till sist plottas y i frekvensplanet. \\
   Empiriska & 1.1023 & 1.3378 & 0.1513\\
   \hline
 \end{tabular}
-\begin{figure}[htb]
+% subsection systemet_appliceras_på_fyrkantsvågen (end)
+% section linjära_system_och_sinusar_3_2_ (end)
+\section{Notch-filter}
+\subsection{Nollställen} % (fold)
+\label{sub:konstruktion_av_taljar_och_namnarpolynom}
+Ett polynom för ett notch-filter ska konstrueras. \\
+Nollställen väljs för $\omega = [1,5,7,9]$ samt $\omega = 0$: \\
+\[
+  \text{täljarpolynom} = s(s - 1)(s + 1)(s - 5)(s + 5)(s - 7)(s + 7)(s - 9)(s + 9)
+\]
+Därefter plottas frekvenssvaret - se figur 10.
+\begin{verbatim}
+  roots = [0 -1i 1i -5i 5i -7i 7i -9i 9i];
+  num = poly(roots);
+  sys = tf(num, 1);
+  bode(sys)
+\end{verbatim}
+\subsection{Poler} % (fold)
+\label{sub:poler}
+Polerna väljs enligt $p = -4$. Antalet bestämmer dämpningen av högre frekvenser. Empiriska test visar att det behövs i storleksordningen 21 poler för att uppnå $60dB$ dämpning för $\omega > 9$. \\
+\begin{verbatim}
+proots = -4*ones(1,21);
+den = poly(proots);
+\end{verbatim}
+\subsection{Förstärkning} % (fold)
+\label{sub:forstarkning}
+Förstärkningen ska normalisera till $0dB$ för $\omega = 3$. Det görs genom att man lägger till ett nollställe vid $\omega = 3$ som bildar den förstärkande faktor som behövs: \\
+\[
+  (3i - x) = 1/(\text{skalfaktor före korrigering})
+\]
+Skalfaktorn före korrigering räknas med med evalfr: \\
+\begin{verbatim}
+evalfr(sys, 3i)
+\end{verbatim}
+
+Den slutgiltiga koden blir: \\
+
+\begin{verbatim}
+roots = [0 -1i 1i -5i 5i -7i 7i -9i 9i 4.31165e8];
+num = poly(roots);
+proots = -4*ones(1,21);
+den = poly(proots);
+sys = tf(num,den);
+\end{verbatim}
+
+\subsection{Slutgiltiga filterresultat} % (fold)
+\label{sub:slutgiltiga_filterresultat}
+Se figur 11.
+% subsection slutgiltiga_filterresultat (end)
+
+% subsection förstärkning (end)
+\section{Figurer} % (fold)
+\label{sec:figurer}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{square.png}
+  \caption{Vår fyrkantsvåg}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{bode.png}
+  \caption{Bode-diagram för $G(j\omega)$}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{pzmap.png}
+  \caption{pzmap}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{omega 1.png}
+  \caption{$\omega = 1$}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{omega 3.png}
+  \caption{$\omega = 3$}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{omega 5.png}
+  \caption{$\omega = 5$}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{matlabsquare.png}
+  \caption{Matlabs fyrkantsvåg}
+\end{figure}
+\begin{figure}[hbt]
+  \centering
+  \includegraphics[width=15.0cm]{matlabsquaredft.png}
+  \caption{DFT-transform av matlabs fyrkantsvåg}
+\end{figure}
+\begin{figure}[hbt]
   \centering
   \includegraphics[width=15.0cm]{dftY.png}
   \caption{DFT-transform av fyrkantsvåg efter påverkan från system G}
 \end{figure}
-% subsection systemet_appliceras_på_fyrkantsvågen (end)
-% section linjära_system_och_sinusar_3_2_ (end)
+\begin{figure}[htb]
+\includegraphics[width=15.0cm]{baranollst.png}
+\caption{Notchfiler med endast nollställen}
+\end{figure}
+\begin{figure}[htb]
+\includegraphics[width=15.0cm]{filterresultat.png}
+\caption{Resultat efter notchfiltrering - x är fyrkantsvåg, y är fyrkantsvåg med påverkan av det givna systemet}
+\end{figure}
+% section figurer (end)
 \bibliographystyle{plain}
 \bibliography{}
 \end{document}
