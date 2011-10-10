@@ -1,0 +1,113 @@
+%
+%  untitled
+%
+%  Created by Jesper Josefsson on 2011-10-10.
+%  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+%
+\documentclass[]{article}
+
+% Use utf-8 encoding for foreign characters
+\usepackage[utf8]{inputenc}
+
+% Setup for fullpage use
+\usepackage{fullpage}
+
+% Uncomment some of the following if you use the features
+%
+% Running Headers and footers
+\usepackage{fancyhdr}
+
+% Multipart figures
+%\usepackage{subfigure}
+
+% More symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+
+% Surround parts of graphics with box
+\usepackage{boxedminipage}
+
+% Package for including code in the document
+\usepackage{listings}
+
+% If you want to generate a toc for each chapter (use with book)
+\usepackage{minitoc}
+
+% This is now the recommended way for checking for PDFLaTeX:
+\usepackage{ifpdf}
+
+%\newif\ifpdf
+%\ifx\pdfoutput\undefined
+%\pdffalse % we are not running PDFLaTeX
+%\else
+%\pdfoutput=1 % we are running PDFLaTeX
+%\pdftrue
+%\fi
+
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+\title{SSY080 \\ Inlämningsuppgift}
+\author{
+Linus Oleander - 880613 - 4873 \\
+Jesper Josefsson - 860409 - 5276 
+}
+
+\date{2011-10-10}
+
+\begin{document}
+
+\ifpdf
+\DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+\else
+\DeclareGraphicsExtensions{.eps, .jpg}
+\fi
+
+\maketitle
+
+\section{Bakgrund}
+Uppgiften går ut på att genomföra ett antal experiment gällande generering och behandling av signaler med Matlab.
+
+\section{Generering av fyrkantsvåg med hjälp av Fourierserie - (3.1)}
+Den första uppgiften var att ta fram ett slutet uttryck för Fourierseriekoefficienterna $A_k$ och $B_k$.\\
+Vi använde följande samband:\\
+\begin{align*}
+	C_k &= \frac{1}{T} \int_0^T \! x(t) e^{-jk\omega_0 t}\, \mathrm{d} t =\\
+	    &= \frac{1}{T} \left(
+	          \int_0^{\frac{T}{2}} \! e^{-jk\omega_0 t}\, \mathrm{d} t
+	          - \int_{\frac{T}{2}}^T \! e^{-jk\omega_0 t}\, \mathrm{d} t \right) =\\
+      &= \frac{1}{-jk\omega_0 T} \left(
+            \left[e^{-jk\omega_0 t}\right]_0^{\frac{T}{2}}
+            - \left[e^{-jk\omega_0 t}\right]_{\frac{T}{2}}^T
+          \right) = \\
+      &= \left[
+          \omega = \frac{2\pi}{T} \Rightarrow \frac{\omega_0 T}{2} = \pi ,\;  \omega_0 T = 2\pi
+        \right] = \\
+      &= \frac{1}{-jk\omega_0 T} \left(
+          2e^{-jk\pi} - e^{-jk2\pi} - 1
+        \right) = \\
+      &=  \left[
+          \begin{array}{ll}
+            2e^{-jk\pi} &=
+              \left\{
+              	\begin{array}{ll}
+              		-2  & ,k\text{ udda} \\
+              		2 & ,k\text{ jämn} 
+              	\end{array}
+              \right. \\
+            e^{-jk2\pi} &= 1
+          \end{array}
+          \right] = \\ \\
+  C_k &= \left\{ \begin{array}{ll}
+            \frac{-4}{-jk2\pi} = \frac{2}{jk\pi} = -\frac{2j}{k\pi}&,k\text{ udda} \\
+            0 &,k\text{ jämn}
+          \end{array} \right.\\
+\end{align*}
+
+
+\bibliographystyle{plain}
+\bibliography{}
+\end{document}
