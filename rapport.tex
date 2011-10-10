@@ -143,10 +143,168 @@ end
 \end{figure}
 % subsection generering_av_fyrkantsvåg (end)
 
-\subsection{Linjära system och sinusar (3.2)} % (fold)
-\label{sub:linjära_system_och_sinusar_3_2_}
+\section{Linjära system och sinusar (3.2)} % (fold)
+\subsection{Konstruering av givet system} % (fold)
+\label{sub:konstruering_av_givet_system}
+Vi konstruerar först ett LTI-system med ett frekvenssvar $G(j\omega)$ som är givet i uppgiften. \\
+Därefter plottar vi det i frekvensdomänen samt studerar dess poler och nollställen.
+\begin{verbatim}
+% num = (s + 0.1)(s + 10) = s^2 + 10.1s + 1
+% den = (s + 1)(s^2 + s + 9) = s^2 + 2s^2 + 10s + 9
+num = {[1 10.1 1]};
+den = {[1 2 10 9]};
+H = tf(num, den);
+bode(H)
+title('Bode for H');
+% pzmap(H);
+% sgrid
+% grid on
+\end{verbatim}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{bode.png}
+  \caption{Bode-diagram för $G(j\omega)$}
+\end{figure}
+I Bode-diagrammet framkommer systemets påverkan på olika frekvenserkomponenter i insignalen. I det övre diagrammet kan vi se systemets amplitudpåverkan. Till exempel förstärks komponenter med vinkelfrekvens $\omega = 3$ med ungefär $10dB$. \\
+I det undre diagrammet ser vi systemets faspåverkan. Till exempel får komponenter med vinkelfrekvensen $\omega = 3$ en förskjutning på ungefär $-100^\circ$.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{pzmap.png}
+  \caption{pzmap}
+\end{figure}
+% subsection konstruering_av_givet_system (end)
 
-% subsection linjära_system_och_sinusar_3_2_ (end)
+\subsection{Insignaler skapas och körs genom systemet} % (fold)
+\label{sub:insignal}
+
+Tre insignaler skapas. Dessa är sinusformade signaler med vinkelsfrekvenserna $\omega = [1,2,3]$. \\
+Därefter används matlab för att simulera systemets påverkan på signalerna. In- och utsignal plottas.
+
+\begin{verbatim}
+N = 8192;
+f = 100;
+Ts = 1/f;
+Tmax = (N-1)*Ts;
+t= 0:Ts:Tmax;
+Xs = ones(3,N);
+Y = ones(3,N);
+index = 1;
+for w=[1 3 5],
+    x = sin(w*t);
+    Xs(index,:) = x;
+    [y, t] = lsim(H,x,t);
+    Y(index,:) = y;
+    index = index +1;
+end
+plot(t,Y(1,:), 'b',t, Xs(1,:),'r')
+title('In and out signals for w=1');
+
+% plot(t,Y(2,:), 'b',t, Xs(2,:),'r')
+% title('In and out signals for w=3');
+
+% plot(t,Y(3,:), 'b',t, Xs(3,:),'r')
+% title('In and out signals for w=5');
+\end{verbatim}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{omega 1.png}
+  \caption{$\omega = 1$}
+\end{figure}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{omega 3.png}
+  \caption{$\omega = 3$}
+\end{figure}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{omega 5.png}
+  \caption{$\omega = 5$}
+\end{figure}
+Man kan se att utsignalerna har samma periodtid som insignalerna. Man kan också se att det har skett amplitudpåverkan samt faspåverkan.
+Med hjälp av evalfr kan vi bestämma systemets teoretiska amplitud- och faspåverkan:
+\begin{verbatim}
+>> abs(evalfr(H,1i))
+ans =
+    0.8858
+>> abs(evalfr(H,3i))
+ans =
+    3.3033
+>> abs(evalfr(H,5i))
+ans =
+    0.6541
+>> angle(evalfr(H,1i))*180/pi
+ans =
+   37.8750
+>> angle(evalfr(H,3i))*180/pi
+ans =
+  -56.7750
+>> angle(evalfr(H,5i))*180/pi
+ans =
+ -125.9168
+\end{verbatim}
+
+Ur detta kan man läsa att förhållandet $y(t) = g(\omega) sin(\omega t + \phi (\omega))$ stämmer.
+% subsection insignal (end)
+
+\section{Periodiska insignaler och DFT}
+\subsection{DFT för matlabs fyrkantsvåg} % (fold)
+Först plottades matlabs fyrkantsvåg:
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{matlabsquare.png}
+  \caption{$\omega = 5$}
+\end{figure}
+Vi konstaterar att funktionen är udda eftersom $f(-x) = -f(x)$. Detta syns dåligt i diagrammet, eftersom vågen genererades med utgångspunkt $t = 0$. \\
+Därefter användes plottades frekvenssvaret för matlabs fyrkantsvåg:
+\begin{verbatim}
+x = square(t);
+% plot(t,x);
+
+k = 0:(N-1);
+wk = 2*pi*fs*k/N;
+X = fft(x,N);
+
+plot(wk, abs(X))
+\end{verbatim}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{matlabsquaredft.png}
+  \caption{DFT-transform av matlabs fyrkantsvåg}
+\end{figure}
+
+Sedan användes ett antal uttryck för att räkna ut de teoretiska Fourierkoefficienterna. Det empiriskt utkomna koefficienterna räknades ut med matlabrutinen evalfr. \\
+
+\begin{tabular}{|c||ccc|}
+  \hline
+  \multicolumn{4}{|c|}{Fourierkoefficienter för fyrkantsvåg} \\
+  \hline
+  Teoretiska & 1.2732 & 0.4244 & 0.2546\\
+  \hline
+  Empiriska & 1.2702 & 0.4154 & 0.2398\\
+  \hline
+\end{tabular}
+% subsection dft_för_matlabs_fyrkantsvåg (end)
+\subsection{Systemet appliceras på fyrkantsvågen} % (fold)
+\label{sub:systemet_appliceras_pa_fyrkantsvagen}
+Det tidigare angedda systemets påverkan på fyrkantsvågen beräknas med hjälp av rutinen lsim.\\
+Fourierkoefficienterna för utsignalen y beräknas med hjälp av givna ekvationer och tas även fram empiriskt med hjälp av matlabrutinen evalfr. \\
+Till sist plottas y i frekvensplanet. \\
+\begin{tabular}{|c||ccc|}
+  \hline
+  \multicolumn{4}{|c|}{Fourierkoefficienter för fyrkantsvåg efter system G} \\
+  \hline
+  Teoretiska & 1.1279 & 1.4020 & 0.1666\\
+  \hline
+  Empiriska & 1.1023 & 1.3378 & 0.1513\\
+  \hline
+\end{tabular}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=15.0cm]{dftY.png}
+  \caption{DFT-transform av fyrkantsvåg efter påverkan från system G}
+\end{figure}
+% subsection systemet_appliceras_på_fyrkantsvågen (end)
+% section linjära_system_och_sinusar_3_2_ (end)
 \bibliographystyle{plain}
 \bibliography{}
 \end{document}
